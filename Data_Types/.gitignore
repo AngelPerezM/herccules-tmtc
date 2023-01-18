@@ -1,0 +1,11 @@
+/build
+/*.txt.user
+/*.pro.user
+
+/.dist
+
+*.autosave
+*.swp
+*.7z
+*.zip
+*.tar.gz

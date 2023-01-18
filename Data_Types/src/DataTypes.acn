@@ -1,0 +1,6 @@
+DataTypes DEFINITIONS ::= BEGIN
+
+    FLOAT32-Type [encoding IEEE754-1985-32]
+    FLOAT64-Type [encoding IEEE754-1985-64]
+
+END

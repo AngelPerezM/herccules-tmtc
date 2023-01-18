@@ -1,0 +1,7 @@
+{
+    "name" : "HERCCULES Data Types",
+    "version" : "1.1.1",
+    "description" : "Data types for the HERCCULES OBSW and I/F with the GS",
+    "vendor" : "STRAST-UPM research group",
+    "license" : "GNU GPL v3"
+}

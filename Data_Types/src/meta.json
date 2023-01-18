@@ -1,0 +1,32 @@
+{
+    "name": "HERCCULES Data Types",
+    "submodules": [
+        {
+            "name": "Root",
+            "elements": [
+                {
+                    "name": "Data Types",
+                    "asn1Files": ["DataTypes.asn"]
+                }
+            ]
+        },
+        {
+            "name": "Operating Modes",
+            "elements": [
+                {
+                    "name": "Data Types - Operating Modes",
+                    "asn1Files": ["DataTypes-OperatingModes.asn"]
+                }
+            ]
+        },
+        {
+            "name": "Analogue & Digital Signals",
+            "elements": [
+                {
+                    "name": "Data Types - AD Signals",
+                    "asn1Files": ["DataTypes-ADSignals.asn"]
+                }
+            ]
+        }
+    ]
+}

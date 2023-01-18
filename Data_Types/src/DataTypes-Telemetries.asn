@@ -1,0 +1,88 @@
+--------------------------------------------------------------------------------
+--                                                                            --
+--           Copyright (C) 2022 Universidad Politécnica de Madrid             --
+--                                                                            --
+--                           H E R C C U L E S                                --
+--                                                                            --
+--                           TMs  Data  Types                                 --
+--                                                                            --
+--  This is free software;  you can redistribute it  and/or modify it  under  --
+--  terms of the  GNU General Public License as published  by the Free Soft-  --
+--  ware  Foundation;  either version 3,  or (at your option) any later ver-  --
+--  sion.  This software is distributed in the hope  that it will be useful,  --
+--  but WITHOUT ANY WARRANTY;  without even the implied warranty of MERCHAN-  --
+--  TABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public  --
+--  License for  more details.  You should have  received  a copy of the GNU  --
+--  General  Public  License  distributed  with  this  software;   see  file  --
+--  COPYING3.  If not, go to http://www.gnu.org/licenses for a complete copy  --
+--  of the license.                                                           --
+--                                                                            --
+--------------------------------------------------------------------------------
+
+
+DataTypes-Telemetries DEFINITIONS AUTOMATIC TAGS ::=
+BEGIN
+
+    EXPORTS ALL;
+
+    IMPORTS
+      Null-Type,
+      INT8-Type,
+      Epoch-Type,
+      UINT32-Type,
+      FLOAT32-Type,
+      Analogue-Raw-Data FROM DataTypes
+
+      Balloon-Mode      FROM DataTypes-OperatingModes;
+
+    -------------------------
+    -- Telemetry (TM) type --
+    -------------------------
+
+    TM-Type ::= CHOICE {
+        housekeeping-tm  HK-TM-Type,
+        scientific-tm    SC-TM-Type
+    }
+
+    -----------------------------
+    -- TM-1: Housekeeping (HK) --
+    -----------------------------
+
+    HK-TM-Type ::= TM-Template {
+        SEQUENCE {
+            atl-hk  ATL-HK-TM-Type,
+            pcu-hk  PCU-HK-TM-Type
+        }
+    }
+
+    ATL-HK-TM-Type ::= SEQUENCE {
+        snapshot-time  Epoch-Type,
+        temperatures   SEQUENCE (SIZE(2)) OF Analogue-Raw-Data
+    }
+
+    PCU-HK-TM-Type ::= SEQUENCE {
+        snapshot-time  Epoch-Type,
+        temperature    INT8-Type,
+        v-bat          FLOAT32-Type,
+        a-bat          FLOAT32-Type
+    }
+
+    ------------------------------
+    -- TM-2: Scientific (SC) TM --
+    ------------------------------
+
+    SC-TM-Type ::= TM-Template {Null-Type}
+    -- TODO: fill this TM.
+
+    ---------------------------
+    -- Template for TM types --
+    ---------------------------
+
+    TM-Template {Payload-Type} ::= SEQUENCE {
+        sequence-number  UINT32-Type,
+        timestamp        Epoch-Type,
+        baloon-mode      Balloon-Mode,
+        payload          Payload-Type
+    }
+
+END
