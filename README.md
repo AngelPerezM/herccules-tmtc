@@ -7,7 +7,7 @@ Telemetry & Telecommand Interface (TMTC I/F) for the GSSW and OBSW communication
 The TMTC I/F is defined by:
    1. A set of data types used to communicate the GSSW and OBSW.
 
-   2. A set of rules for the encoding and decoding of the data types defined in *1.*.
+   2. A set of rules for the encoding and decoding of the data types defined in *1*.
 
    3. A set of function prototypes (the I/F) that must be implemented by the OBSW and GSSW.
 
@@ -19,4 +19,4 @@ The the [ASN1SCC](https://github.com/ttsiodras/asn1scc) compiler is used to auto
 
 The `Data_Types` module is a Qt project
 that makes use of the N7Space ASN1 editor.
-The project was developed inside the TASTE Virtual Machine and *must* be opened with the `spacecreator.AppImange` command, rather that the useal `qtcreator`.
+The project was developed inside the TASTE Virtual Machine and it *must* be opened with the `qtcreator` IDE.
