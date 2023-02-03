@@ -26,14 +26,15 @@ BEGIN
     EXPORTS ALL;
 
     IMPORTS
-      Null-Type,
-      INT8-Type,
-      Epoch-Type,
-      UINT32-Type,
-      FLOAT32-Type,
-      Analogue-Raw-Data FROM DataTypes
+      Null-Type, INT8-Type,
+      Epoch-Type, UINT32-Type,
+      FLOAT32-Type, Analogue-Raw-Data,
+      Heater-Power-Type FROM DataTypes
 
-      Balloon-Mode      FROM DataTypes-OperatingModes;
+      Balloon-Mode FROM DataTypes-OperatingModes
+
+      PCU-PS-Lines-Status,
+      IMU-Sensors-Data FROM DataTypes-Subsystems;
 
     -------------------------
     -- Telemetry (TM) type --
@@ -51,28 +52,101 @@ BEGIN
     HK-TM-Type ::= TM-Template {
         SEQUENCE {
             atl-hk  ATL-HK-TM-Type,
-            pcu-hk  PCU-HK-TM-Type
+            pcu-hk  PCU-HK-TM-Type,
+            el-hk   EL-HK-TM-Type
         }
     }
 
+    -- ATL:
+
     ATL-HK-TM-Type ::= SEQUENCE {
-        snapshot-time  Epoch-Type,
-        temperatures   SEQUENCE (SIZE(2)) OF Analogue-Raw-Data
+        snapshot-time-secs  Epoch-Type,
+        temperatures        SEQUENCE (SIZE(2)) OF Analogue-Raw-Data
     }
 
+    -- PCU:
+
     PCU-HK-TM-Type ::= SEQUENCE {
-        snapshot-time  Epoch-Type,
-        temperature    INT8-Type,
-        v-bat          FLOAT32-Type,
-        a-bat          FLOAT32-Type
+        snapshot-time-secs  Epoch-Type,
+               temperature  INT8-Type,
+                     v-bat  FLOAT32-Type,
+                     a-bat  FLOAT32-Type,
+                  switches  PCU-PS-Lines-Status
+    }
+
+    -- EL:
+
+    EL-HK-TM-Type ::= SEQUENCE {
+        snapshot-time-secs  Epoch-Type,
+
+        upwards-pyranometer-temperature  Analogue-Raw-Data,
+        upwards-pyrgeometer-temperature  Analogue-Raw-Data,
+
+        downwards-pyranometer-temperature  Analogue-Raw-Data,
+        downwards-pyrgeometer-temperature  Analogue-Raw-Data,
+
+        abs-pressure-mbar-1  FLOAT32-Type,
+        abs-pressure-mbar-2  FLOAT32-Type
     }
 
     ------------------------------
     -- TM-2: Scientific (SC) TM --
     ------------------------------
 
-    SC-TM-Type ::= TM-Template {Null-Type}
-    -- TODO: fill this TM.
+    SC-TM-Type ::= TM-Template {
+        SEQUENCE {
+            htl  HTL-SC-TM-Type,
+            el   EL-SC-TM-Type,
+            nads NADS-SC-TM-Type,
+            atl  ATL-SC-TM-Type
+        }
+    }
+
+    -- HTL:
+
+    HTL-SC-TM-Type ::= SEQUENCE {
+        snapshot-time-secs Epoch-Type,
+
+        exp1-horizontal-heated-plate  Analogue-Raw-Data,
+        exp2-vertical-heated-plate  Analogue-Raw-Data,
+        exp3-horizontal-heated-plate  Analogue-Raw-Data,
+        exp4-inner-vertical-plate-surface  Analogue-Raw-Data,
+        exp4-intermediate-heated-plate-surface  Analogue-Raw-Data,
+        exp4-exterior-plate-surface  Analogue-Raw-Data,
+
+        exp1-air-cavity Analogue-Raw-Data,
+        exp2-air-cavity Analogue-Raw-Data,
+        exp3-air-cavity Analogue-Raw-Data,
+        exp4-air-cavity Analogue-Raw-Data,
+
+        heaters SEQUENCE (SIZE(4)) OF Heater-Power-Type
+    }
+
+    -- EL:
+
+    EL-SC-TM-Type ::= SEQUENCE {
+        snapshot-time-secs Epoch-Type,
+        upwards-pyranometer Analogue-Raw-Data,
+        upwards-pyrgeometer Analogue-Raw-Data,
+        downwards-pyranometer Analogue-Raw-Data,
+        downwards-pyrgeometer Analogue-Raw-Data,
+        dif-barometers SEQUENCE (SIZE(4)) OF Analogue-Raw-Data
+    }
+
+    -- NADS:
+
+    NADS-SC-TM-Type ::= SEQUENCE {
+        snapshot-time-secs Epoch-Type,
+        imu-sensors IMU-Sensors-Data,
+        gps Null-Type -- TODO: To Be Defined
+    }
+
+    -- ATL:
+
+    ATL-SC-TM-Type ::= SEQUENCE {
+        snapshot-time-secs Epoch-Type,
+        photodiodes  SEQUENCE (SIZE(4)) OF Analogue-Raw-Data
+    }
 
     ---------------------------
     -- Template for TM types --
@@ -80,9 +154,9 @@ BEGIN
 
     TM-Template {Payload-Type} ::= SEQUENCE {
         sequence-number  UINT32-Type,
-        timestamp        Epoch-Type,
-        baloon-mode      Balloon-Mode,
-        payload          Payload-Type
+        timestamp-secs   Epoch-Type,
+        balloon-mode     Balloon-Mode,
+        payload          Payload-Type  -- dependant on subsystem
     }
 
 END

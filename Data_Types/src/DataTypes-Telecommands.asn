@@ -26,7 +26,8 @@ BEGIN
 
     IMPORTS
         Heater-Power-Type  FROM DataTypes
-        Balloon-Mode       FROM DataTypes-OperatingModes;
+        Balloon-Mode,
+        TMTC-Mode          FROM DataTypes-OperatingModes;
 
     --  T E L E C O M A N D S  -------------------------------------------------
 
@@ -39,7 +40,8 @@ BEGIN
         start-manual-control       TC-Start-Manual-Control,
         stop-manual-control        TC-Stop-Manual-Control,
         control-experiment-heater  TC-Control-Experiment-Heater,
-        restart-device             TC-Restart-Device
+        restart-device             TC-Restart-Device,
+        change-tm-mode             TC-Change-TM-Mode
     }
 
     ------------------------------------
@@ -73,6 +75,14 @@ BEGIN
 
     TC-Restart-Device ::= SEQUENCE {
         device-id  Restartable-Device-ID
+    }
+
+    --------------------------
+    -- TC-5: Change TM Mode --
+    --------------------------
+
+    TC-Change-TM-Mode ::= SEQUENCE {
+        new-mode  TMTC-Mode
     }
 
     --  A U X I L I A R Y  -----------------------------------------------------

@@ -1,6 +1,6 @@
 ------------------------------------------------------------------------------
 --                                                                          --
---          Copyright (C) 2022 Universidad Politécnica de Madrid            --
+--          Copyright (C) 2022 Universidad Politécnica de Madrid           --
 --                                                                          --
 --                          H E R C C U L E S                               --
 --                                                                          --
@@ -94,9 +94,10 @@ DataTypes-OperatingModes DEFINITIONS ::= BEGIN
         heaters-mode Env-Lab-Heaters-Mode
     }
 
-    Env-Lab-Heaters-Mode ::= Actuator-Control-Mode
-    -- You can't control the Upwards or Downwards Env Lab experiment independently
-    -- beacuse there is ONLY ONE temperature controller FOR BOTH experiments.
+    Env-Lab-Heaters-Mode ::= SEQUENCE {
+        upwards    Actuator-Control-Mode,
+        downwards  Actuator-Control-Mode
+    }
 
     ------------------
     -- Attitude Lab --
@@ -123,6 +124,16 @@ DataTypes-OperatingModes DEFINITIONS ::= BEGIN
     NADS-Mode ::= ENUMERATED {
         off,
         on
+    }
+
+    ---------------------------------------
+    -- Telemetry & Telecommand Subsystem --
+    ---------------------------------------
+
+    TMTC-Mode ::= ENUMERATED { -- When:
+        nominal,     --+ connection is active and bandwidth is FINE
+        degraded,    --+ connection is active but bandwidth is LOW
+        mute         --+ connection may be active and the bandwidth is TOO LOW
     }
 
     --  A U X I L I A R Y  -----------------------------------------------------

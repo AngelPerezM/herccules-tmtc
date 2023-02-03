@@ -79,6 +79,8 @@ BEGIN
     Analogue-Raw-Data ::= INT16-Type
     -- 16 bit ADC
 
+    Duty-Cycle-Type ::= REAL (0.0 .. 100.0)
+
     Heater-Power-Type ::= REAL (0.0 .. 2.0)
 
     Switch-Status ::= ENUMERATED {
