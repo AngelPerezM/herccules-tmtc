@@ -61,6 +61,7 @@ DataTypes-OperatingModes DEFINITIONS ::= BEGIN
         -- HTL, subsystem level mode --
         mode ENUMERATED {
             off,
+            pre-launch,
 
             ascent-mode1,
             ascent-mode2,
