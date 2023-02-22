@@ -81,7 +81,7 @@ BEGIN
 
     Duty-Cycle-Type ::= REAL (0.0 .. 100.0)
 
-    Heater-Power-Type ::= REAL (0.0 .. 2.0)
+    Heater-Power-Type ::= REAL (0.0 .. 5.0)
 
     Switch-Status ::= ENUMERATED {
         on, off

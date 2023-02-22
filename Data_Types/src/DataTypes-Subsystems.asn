@@ -118,7 +118,7 @@ DataTypes-Subsystems DEFINITIONS ::= BEGIN
 
     EnvLab-Experiment-Data ::= SEQUENCE {
         -- Env Lab heater status, affects both pyra/pyrgeo-meter --
-        heater Heater-Power-Type,
+        heater Switch-Status,
 
         -- Env Lab Experiments sensors readings --
         analogue-data EnvLab-Experiment-Data-Sensors

@@ -91,18 +91,13 @@ BEGIN
     -- Heater ID --
     ---------------
 
-    -- Type to identify an experiment's heater. The Environemental Lab has two
-    -- heaters physically connected to the same power line, only 1 ID is needed.
+    -- Type to identify an experiment's heater.
     Heater-ID ::= ENUMERATED {
         -- HTL --
         htl-experiment1-heater,
         htl-experiment2-heater,
         htl-experiment3-heater,
-        htl-experiment4-heater,
-
-        -- Env Lab --
-        env-lab-upwards-heater,
-        env-lab-downwards-heater
+        htl-experiment4-heater
     }
 
     ---------------------------

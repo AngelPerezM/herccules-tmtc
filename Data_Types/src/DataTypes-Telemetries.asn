@@ -29,7 +29,7 @@ BEGIN
       Null-Type, INT8-Type,
       Epoch-Type, UINT32-Type,
       FLOAT32-Type, Analogue-Raw-Data,
-      Heater-Power-Type FROM DataTypes
+      Heater-Power-Type, Switch-Status FROM DataTypes
 
       Balloon-Mode FROM DataTypes-OperatingModes
 
@@ -81,9 +81,11 @@ BEGIN
 
         upwards-pyranometer-temperature  Analogue-Raw-Data,
         upwards-pyrgeometer-temperature  Analogue-Raw-Data,
+        upwards-heater-status Switch-Status,
 
         downwards-pyranometer-temperature  Analogue-Raw-Data,
         downwards-pyrgeometer-temperature  Analogue-Raw-Data,
+        downwards-heater-status Switch-Status,
 
         abs-pressure-mbar-1  FLOAT32-Type,
         abs-pressure-mbar-2  FLOAT32-Type
