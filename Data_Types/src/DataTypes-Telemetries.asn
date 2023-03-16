@@ -116,10 +116,16 @@ BEGIN
         exp4-intermediate-heated-plate-surface  Analogue-Raw-Data,
         exp4-exterior-plate-surface  Analogue-Raw-Data,
 
-        exp1-air-cavity Analogue-Raw-Data,
-        exp2-air-cavity Analogue-Raw-Data,
-        exp3-air-cavity Analogue-Raw-Data,
-        exp4-air-cavity Analogue-Raw-Data,
+        exp1-air-cavity-intermediate-height Analogue-Raw-Data,
+        exp1-air-cavity-upper-height Analogue-Raw-Data,
+        exp2-air-cavity-intermediate-height Analogue-Raw-Data,
+        exp2-air-cavity-upper-height Analogue-Raw-Data,
+        exp3-air-cavity-intermediate-height Analogue-Raw-Data,
+        exp3-air-cavity-upper-height Analogue-Raw-Data,
+        exp4-air-cavity-small-intermediate-1 Analogue-Raw-Data,
+        exp4-air-cavity-small-intermediate-2 Analogue-Raw-Data,
+        exp4-air-cavity-big-intermediate-1 Analogue-Raw-Data,
+        exp4-air-cavity-big-intermediate-2 Analogue-Raw-Data,
 
         heaters SEQUENCE (SIZE(4)) OF Heater-Power-Type
     }
