@@ -208,7 +208,20 @@ DataTypes-Subsystems DEFINITIONS ::= BEGIN
 
     -- GPS data
 
-    GPS-Data ::= Null-Type -- TODO: TBD
+    GPS-Data ::= SEQUENCE {
+        -- TIME
+        time-secs  Epoch-Type,
+        time-nsecs Epoch-Type,
+
+        -- POSITION
+        latitude-deg  FLOAT32-Type,
+        longitude-deg FLOAT32-Type,
+        altitude-m    FLOAT32-Type,
+
+        -- VELOCITY
+        sog-knots FLOAT32-Type,
+        cog-deg   FLOAT32-Type
+    }
 
     ------------------
     -- Attitude Lab --

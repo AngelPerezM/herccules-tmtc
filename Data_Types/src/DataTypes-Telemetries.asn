@@ -34,7 +34,8 @@ BEGIN
       Balloon-Mode FROM DataTypes-OperatingModes
 
       PCU-PS-Lines-Status,
-      IMU-Sensors-Data FROM DataTypes-Subsystems;
+      IMU-Sensors-Data,
+      GPS-Data FROM DataTypes-Subsystems;
 
     -------------------------
     -- Telemetry (TM) type --
@@ -146,7 +147,7 @@ BEGIN
     NADS-SC-TM-Type ::= SEQUENCE {
         snapshot-time-secs Epoch-Type,
         imu-sensors IMU-Sensors-Data,
-        gps Null-Type -- TODO: To Be Defined
+        gps GPS-Data
     }
 
     -- ATL:
