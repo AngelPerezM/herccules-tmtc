@@ -67,8 +67,7 @@ DataTypes-OperatingModes DEFINITIONS ::= BEGIN
             ascent-mode2,
 
             float-mode1,
-            float-mode2,
-            float-mode3
+            float-mode2
         },
 
         -- Modes for each HTL heater --
